@@ -1,0 +1,65 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor and IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Build and Distribution
+dist/
+build/
+.sass-cache/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Image Processing
+*.psd
+*.ai
+*.sketch
+originals/
+raw-images/
+
+# Backup Files
+*.bak
+*.backup
+*.old
+
+# Environment and Config
+.env
+.env.local
+.env.production
+config.local.js
+
+# Deployment
+.deploy/
+.publish/
+
+# Analytics and Tracking
+google*.html
+analytics/
+
+# Custom ignores for your project
+# Add any project-specific files you don't want to track
+drafts/
+notes.txt
+TODO.md
