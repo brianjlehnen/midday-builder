@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midday Builder - Custom Woodworking</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fffef8;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 254, 248, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(90, 107, 115, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #d4461b;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #5a6b73;
+        }
+
+        /* Hero */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), 
+                        url('https://images.unsplash.com/photo-1504148455328-c376907d081c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xKSIvPgo8dGV4dCB4PSIxMDAiIHk9IjEyMCIgZm9udC1mYW1pbHk9Ik9zd2FsZCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TUlEREFZPC90ZXh0Pgo8dGV4dCB4PSIxMDAiIHk9IjE1MCIgZm9udC1mYW1pbHk9Ik9zd2FsZCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QlVJTERFUjwvdGV4dD4KPGREZWY+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8wXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjIwMCIgeTI9IjIwMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRjREMDNGIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0U2N0UyMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.9;
+            filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+            transition: opacity 0.3s ease;
+        }
+
+        .hero-content:hover .hero-logo {
+            opacity: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .cta-button {
+            background: #d4461b;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.2s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: #b03817;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c2c2c;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #5a6b73;
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-top: 2rem;
+            background: #fbfaf6;
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid rgba(90, 107, 115, 0.08);
+            box-shadow: 0 1px 3px rgba(90, 107, 115, 0.06);
+        }
+
+        .about-image {
+            background: #f7f6f1;
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7a7a;
+            border: 1px dashed rgba(90, 107, 115, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* Portfolio */
+        .portfolio {
+            background: linear-gradient(135deg, #f9f8f3 0%, #f6f5ef 100%);
+            position: relative;
+        }
+
+        .portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><rect width="100" height="100" fill="%23f9f8f3"/><path d="M0 0h100v1H0zM0 20h100v1H0zM0 40h100v1H0zM0 60h100v1H0zM0 80h100v1H0z" fill="%23000" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-item {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(90, 107, 115, 0.12);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(90, 107, 115, 0.06);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(90, 107, 115, 0.16);
+            border-color: rgba(90, 107, 115, 0.12);
+        }
+
+        .portfolio-image {
+            height: 220px;
+            background: linear-gradient(135deg, #f5f4ee 0%, #f0efea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7a7a;
+            border-bottom: 1px solid rgba(90, 107, 115, 0.08);
+            font-size: 0.95rem;
+        }
+
+        .portfolio-info {
+            padding: 1.8rem;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 0.6rem;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+        }
+
+        .portfolio-info p {
+            color: #6a6a6a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Videos */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-item {
+            background: #fbfaf6;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(90, 107, 115, 0.08);
+            border: 1px solid rgba(90, 107, 115, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            box-shadow: 0 8px 30px rgba(90, 107, 115, 0.14);
+            transform: translateY(-4px);
+            border-color: rgba(90, 107, 115, 0.1);
+        }
+
+        .video-thumbnail {
+            height: 160px;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid rgba(255,255,255,0.9);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .video-thumbnail:hover .play-icon {
+            border-left-color: white;
+        }
+
+        .video-info {
+            padding: 1.8rem;
+        }
+
+        .video-info h3 {
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            color: #2c2c2c;
+        }
+
+        .video-info p {
+            color: #6a6a6a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, #f7f6f1 0%, #f3f2ec 100%);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(90, 107, 115, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 70, 27, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 3rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(90, 107, 115, 0.1);
+            box-shadow: 0 8px 32px rgba(90, 107, 115, 0.12);
+        }
+
+        .contact-info h3 {
+            color: #d4461b;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+
+        .contact-video {
+            background: #2c2c2c;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(90, 107, 115, 0.15);
+            border: 1px solid rgba(90, 107, 115, 0.1);
+        }
+
+        .video-placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .play-button-large {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .play-button-large:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .play-icon-large {
+            width: 0;
+            height: 0;
+            border-left: 25px solid rgba(255, 255, 255, 0.8);
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            margin-left: 8px;
+        }
+
+        .video-caption {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .video-subcaption {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .social-links a:hover {
+            color: #d4461b;
+            background: rgba(212, 70, 27, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Simple fade in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">Midday Builder</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo"></div>
+            <p>Custom woodworking and furniture design in Wisconsin. Each piece built by hand with attention to detail and quality craftsmanship.</p>
+            <a href="#work" class="cta-button">See My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                Your workshop photo
+            </div>
+            <div class="about-text">
+                <p>I'm a woodworker based in Wisconsin, specializing in custom furniture and built-ins. What started as a hobby in my garage has grown into a passion for creating functional, beautiful pieces that last generations.</p>
+                
+                <p>Every project begins with understanding what you need and how you live. Whether it's a dining table for family gatherings or custom storage that fits your exact space, I work with you to design and build something that's uniquely yours.</p>
+                
+                <p>I document my process and share techniques on YouTube to help other makers learn and improve their craft. There's something satisfying about working with wood – each piece has its own character and challenges.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section portfolio">
+        <h2>Recent Projects</h2>
+        <div class="portfolio-grid">
+            <a href="walnut-dining-table.html" class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    Dining table photo
+                </div>
+                <div class="portfolio-info">
+                    <h3>Walnut Dining Table</h3>
+                    <p>8-foot live edge table with steel legs. Built for a family of six who wanted something that could handle daily use but still look great for dinner parties.</p>
+                </div>
+            </a>
+
+            <a href="maple-kitchen-cabinets.html" class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    Kitchen cabinet photo
+                </div>
+                <div class="portfolio-info">
+                    <h3>Kitchen Renovation</h3>
+                    <p>Complete kitchen remodel with custom maple cabinets, soft-close drawers, and hidden storage solutions. Worked with the homeowner's contractor team.</p>
+                </div>
+            </a>
+
+            <a href="oak-built-in-bookcases.html" class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    Bookshelf photo
+                </div>
+                <div class="portfolio-info">
+                    <h3>Built-in Bookcases</h3>
+                    <p>Floor-to-ceiling oak bookcases designed to fit around existing baseboards and match the home's original trim work.</p>
+                </div>
+            </a>
+
+            <a href="cherry-coffee-table.html" class="portfolio-item fade-in">
+                <div class="portfolio-image">
+                    Coffee table photo
+                </div>
+                <div class="portfolio-info">
+                    <h3>Cherry Coffee Table</h3>
+                    <p>Simple, clean lines with hand-cut dovetail joints. Finished with multiple coats of hand-rubbed oil for a smooth, durable surface.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section id="videos" class="section">
+        <h2>YouTube Channel</h2>
+        <div class="video-grid">
+            <div class="video-item fade-in">
+                <div class="video-thumbnail">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3>Building a Farmhouse Table</h3>
+                    <p>Complete build from rough lumber to finished piece. Covers joinery, finishing, and common mistakes to avoid.</p>
+                </div>
+            </div>
+
+            <div class="video-item fade-in">
+                <div class="video-thumbnail">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3>Hand-Cut Dovetails</h3>
+                    <p>Step-by-step tutorial on cutting dovetails by hand. Tips for getting clean, tight joints without expensive jigs.</p>
+                </div>
+            </div>
+
+            <div class="video-item fade-in">
+                <div class="video-thumbnail">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="video-info">
+                    <h3>Wood Finishing Basics</h3>
+                    <p>Different finishing options and when to use each one. Comparison of oil, poly, and shellac finishes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Let's discuss your project</h3>
+                <p>Whether you have detailed plans or just an idea, I'd love to hear about what you're thinking. Most projects start with a conversation about what you need and what's possible.</p>
+                
+                <p>I typically book projects 6-8 weeks out, but I'm happy to discuss timeline and answer any questions you have about the process.</p>
+                
+                <p><strong>Email:</strong> hello@middaybuilder.com</p>
+                <p><strong>Phone:</strong> (555) 123-4567</p>
+                <p><strong>Location:</strong> Oconomowoc, Wisconsin</p>
+            </div>
+            
+            <div class="contact-video">
+                <div class="video-placeholder">
+                    <div class="play-button-large">
+                        <div class="play-icon-large"></div>
+                    </div>
+                    <div class="video-caption">Meet the Maker</div>
+                    <div class="video-subcaption">A quick tour of the shop and my process</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" title="YouTube">📺</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Facebook">👥</a>
+        </div>
+        <p>&copy; 2025 Midday Builder. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const offsetTop = target.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact form handling (if form exists)
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !message) {
+                    alert('Please fill out all required fields.');
+                    return;
+                }
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                alert('Thanks for your message! I\'ll get back to you within 1-2 business days.');
+                this.reset();
+            });
+        }
+
+        // Video thumbnails
+        document.querySelectorAll('.video-thumbnail, .video-placeholder').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                alert('Video player would open here. Replace with actual YouTube embeds or video links.');
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

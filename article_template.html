@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Hand-Cut Dovetails - Midday Builder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #fffef8;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 254, 248, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(90, 107, 115, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #d4461b;
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #2c2c2c;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #5a6b73;
+        }
+
+        .back-link {
+            color: #d4461b;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 100px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Article Header */
+        .article-header {
+            padding: 120px 2rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f9f8f3 0%, #f6f5ef 100%);
+            border-radius: 0 0 24px 24px;
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(90, 107, 115, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(212, 70, 27, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(90, 107, 115, 0.1);
+            color: #5a6b73;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c2c2c;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            color: #6a6a6a;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            border: 1px solid rgba(90, 107, 115, 0.08);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .meta-item strong {
+            color: #d4461b;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background: #f7f6f1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7a7a;
+            margin: 3rem 0;
+            border: 1px dashed rgba(90, 107, 115, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .article-content h2 {
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: #2c2c2c;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .article-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #5a6b73;
+            border-radius: 1px;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #d4461b;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .article-content p {
+            margin-bottom: 2rem;
+            color: #4a4a4a;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .article-content ul, 
+        .article-content ol {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        .article-content blockquote {
+            background: #fbfaf6;
+            border-left: 4px solid #d4461b;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            position: relative;
+        }
+
+        .article-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(212, 70, 27, 0.2);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        /* Callout Box */
+        .callout {
+            background: linear-gradient(135deg, rgba(90, 107, 115, 0.05) 0%, rgba(90, 107, 115, 0.02) 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+            border: 1px solid rgba(90, 107, 115, 0.1);
+            position: relative;
+        }
+
+        .callout h4 {
+            color: #5a6b73;
+            margin-bottom: 1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.3rem;
+        }
+
+        .callout p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            margin: 3rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            background: #f5f4ee;
+            height: 200px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7a7a;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(90, 107, 115, 0.08);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(90, 107, 115, 0.12);
+        }
+
+        /* Related Articles */
+        .related-articles {
+            background: linear-gradient(135deg, #f7f6f1 0%, #f3f2ec 100%);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .related-articles::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(90, 107, 115, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 70, 27, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .related-articles h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            color: #2c2c2c;
+            position: relative;
+            z-index: 1;
+        }
+
+        .related-articles h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #5a6b73;
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .related-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(90, 107, 115, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(90, 107, 115, 0.06);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .related-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(90, 107, 115, 0.12);
+        }
+
+        .related-item h3 {
+            margin-bottom: 1rem;
+            color: #2c2c2c;
+            font-size: 1.3rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .related-item p {
+            color: #6a6a6a;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #d4461b;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Author Bio */
+        .author-bio {
+            background: #fbfaf6;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+            border: 1px solid rgba(90, 107, 115, 0.08);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: #f0efea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a7a7a;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            color: #2c2c2c;
+            margin-bottom: 0.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .author-info p {
+            color: #6a6a6a;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Table of Contents */
+        .table-of-contents {
+            background: rgba(90, 107, 115, 0.03);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border: 1px solid rgba(90, 107, 115, 0.08);
+        }
+
+        .table-of-contents h4 {
+            color: #5a6b73;
+            margin-bottom: 1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            color: #d4461b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .article-title {
+                font-size: 2.5rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .article-header,
+            .article-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .related-articles {
+                padding: 3rem 1rem;
+            }
+
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Midday Builder</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#videos">Videos</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="article-header">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="article-category">Woodworking Techniques</div>
+        <h1 class="article-title">The Art of Hand-Cut Dovetails</h1>
+        <p class="article-subtitle">Why this centuries-old joinery technique remains the gold standard for quality craftsmanship, and how to master it in your own workshop.</p>
+        
+        <div class="article-meta">
+            <div class="meta-item"><strong>Read Time:</strong> 8 minutes</div>
+            <div class="meta-item"><strong>Skill Level:</strong> Intermediate</div>
+            <div class="meta-item"><strong>Published:</strong> March 15, 2024</div>
+        </div>
+    </div>
+
+    <div class="article-content">
+        <div class="table-of-contents">
+            <h4>In This Article</h4>
+            <ul class="toc-list">
+                <li><a href="#introduction">Why Dovetails Matter</a></li>
+                <li><a href="#tools">Essential Tools</a></li>
+                <li><a href="#technique">Step-by-Step Technique</a></li>
+                <li><a href="#troubleshooting">Common Mistakes</a></li>
+                <li><a href="#finishing">Finishing Touches</a></li>
+            </ul>
+        </div>
+
+        <div class="article-image">
+            Hero image: Close-up of perfectly cut dovetail joint
+        </div>
+
+        <p>There's something deeply satisfying about cutting a perfect dovetail joint by hand. No machinery, no jigs—just sharp tools, steady hands, and centuries of woodworking wisdom passed down through generations. In an age of mass production and CNC precision, the hand-cut dovetail stands as a testament to human craftsmanship.</p>
+
+        <p>The dovetail joint isn't just beautiful; it's mechanically superior to almost any other wood joint. The interlocking wedge shape creates a connection that actually gets stronger under stress. It's why you'll find dovetails in furniture that's survived hundreds of years, still tight and solid after decades of use.</p>
+
+        <div class="content-section">
+            <h2 id="introduction">Why Dovetails Matter in Modern Woodworking</h2>
+
+            <p>In my workshop, I could cut dovetails on a router table in minutes. The joint would be perfectly uniform, mathematically precise. So why do I still spend hours cutting them by hand? Because there's something the machine can't replicate—the subtle irregularities that prove human hands created something unique.</p>
+
+            <blockquote>
+                "The slight variations in a hand-cut dovetail tell a story. They whisper of Saturday mornings in the workshop, of concentration and patience, of the maker's relationship with their tools."
+            </blockquote>
+
+            <p>Clients notice these details. When someone runs their fingers along a drawer front and feels the gentle undulations of hand-cut pins and tails, they understand they're touching something special. It's the difference between furniture and art.</p>
+        </div>
+
+        <div class="content-section">
+            <h3 id="tools">Essential Tools for Hand-Cut Dovetails</h3>
+
+            <p>The beauty of hand-cut dovetails is their simplicity. You don't need expensive machinery—just a few well-maintained hand tools:</p>
+
+            <ul>
+                <li><strong>Dovetail Saw</strong> - Fine-toothed backsaw, typically 14-20 TPI</li>
+                <li><strong>Coping Saw</strong> - For removing waste between pins</li>
+                <li><strong>Sharp Chisels</strong> - 1/4", 1/2", and 3/4" widths</li>
+                <li><strong>Marking Gauge</strong> - For consistent baseline marking</li>
+                <li><strong>Dovetail Marker</strong> - Or simply use a sliding bevel</li>
+                <li><strong>Fine Pencil</strong> - 2H or harder for precise marking</li>
+            </ul>
+
+            <div class="callout">
+                <h4>Tool Maintenance Tip</h4>
+                <p>Your chisels are only as good as their edge. I spend 10 minutes sharpening before every dovetail session. A truly sharp chisel cuts end grain like butter and leaves surfaces that need no sanding.</p>
+            </div>
+
+            <div class="article-image">
+                Layout tools arranged on workbench
+            </div>
+        </div>
+
+        <div class="content-section dark">
+            <h2 id="technique">The Step-by-Step Process</h2>
+
+            <p>Every woodworker develops their own dovetail sequence, but here's the method I've refined over thousands of joints:</p>
+
+            <h3>1. Layout and Marking</h3>
+
+            <p>Precision starts with accurate layout. I use a marking gauge to score the baseline on both pieces—this creates a crisp reference line and prevents tearout when cutting. The traditional 1:7 ratio (about 8.1 degrees) provides the perfect balance of mechanical strength and visual appeal.</p>
+
+            <h3>2. Cutting the Pins</h3>
+
+            <p>Contrary to popular teaching, I cut pins first. This gives me a template to trace the tails, ensuring perfect fit. I start the cuts square to the face, then gradually adjust to the dovetail angle as the cut progresses. The saw should track naturally if properly sharpened.</p>
+
+            <h3>3. Removing Waste</h3>
+
+            <p>Here's where patience pays off. I rough out the waste with a coping saw, staying about 1/32" proud of the baseline. Then it's careful chisel work, paring to the exact line. Work from both faces toward the middle to prevent blowout.</p>
+
+            <div class="image-gallery">
+                <div class="gallery-grid">
+                    <div class="gallery-item">Marking the pins</div>
+                    <div class="gallery-item">First saw cuts</div>
+                    <div class="gallery-item">Removing waste</div>
+                    <div class="gallery-item">Test fitting</div>
+                </div>
+            </div>
+
+            <h3>4. Tracing and Cutting Tails</h3>
+
+            <p>With the pins complete, I use them as a template to mark the tails. A sharp knife creates the most accurate lines. The actual cutting follows the same process—saw to the line, remove waste, pare to perfection.</p>
+
+            <div class="callout">
+                <h4>The 90% Rule</h4>
+                <p>Aim for joints that go together with hand pressure alone for about 90% of the way, then need gentle tapping for final seating. This ensures proper glue distribution without risking damage from forcing.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 id="troubleshooting">Common Mistakes and How to Fix Them</h2>
+
+            <p>Even experienced woodworkers occasionally cut a dovetail that's too tight or too loose. Here's how to salvage imperfect joints:</p>
+
+            <ul>
+                <li><strong>Too Tight:</strong> Carefully pare the sides of the pins or tails with a chisel</li>
+                <li><strong>Too Loose:</strong> Add thin shims of matching wood and pare to fit</li>
+                <li><strong>Blown Out Edges:</strong> These often close up during glue-up with clamping pressure</li>
+                <li><strong>Gaps at Baseline:</strong> Usually indicates the baseline wasn't cut deep enough</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h3 id="finishing">The Final Details</h3>
+
+            <p>A well-cut dovetail needs minimal cleanup. A few light passes with a smoothing plane removes saw marks, and perhaps a touch of 220-grit sandpaper on the end grain. The goal is to preserve the crispness of the edges while achieving a surface ready for finish.</p>
+
+            <div class="article-image">
+                Completed dovetail drawer box with finish applied
+            </div>
+
+            <p>The time investment in hand-cut dovetails is significant—what takes 10 minutes on a machine requires an hour or more by hand. But that hour is meditative, focused work that connects you directly to the craft. Your clients will understand the difference, and more importantly, you'll feel it in your hands every time you open that drawer.</p>
+
+            <p>Master the dovetail, and you'll have learned not just a joint, but a philosophy of craftsmanship that values process as much as product. In our fast-paced world, that's increasingly rare—and increasingly valuable.</p>
+        </div>
+
+        <div class="author-bio">
+            <div class="author-avatar">
+                Your Photo
+            </div>
+            <div class="author-info">
+                <h4>About the Author</h4>
+                <p>I've been cutting dovetails for over a decade, and I still learn something new with each project. When I'm not in the workshop, you can find me teaching traditional joinery techniques to the next generation of makers.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="related-articles">
+        <h2>Related Articles</h2>
+        <div class="related-grid">
+            <a href="mortise-tenon-mastery.html" class="related-item">
+                <h3>Mortise & Tenon Mastery</h3>
+                <p>The foundation joint every woodworker must know, from layout to perfect fitting.</p>
+                <span class="read-more">Read More →</span>
+            </a>
+
+            <a href="hand-tool-maintenance.html" class="related-item">
+                <h3>Keeping Your Hand Tools Sharp</h3>
+                <p>A comprehensive guide to maintaining the edge tools that make precision work possible.</p>
+                <span class="read-more">Read More →</span>
+            </a>
+
+            <a href="wood-selection-guide.html" class="related-item">
+                <h3>Choosing Wood for Fine Furniture</h3>
+                <p>How to select lumber that will showcase your joinery and stand the test of time.</p>
+                <span class="read-more">Read More →</span>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="index.html"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // In a real implementation, this would navigate to the home page
+                alert('This would navigate back to the home page');
+            });
+        });
+    </script>
+</body>
+</html>
