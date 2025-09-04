@@ -70,7 +70,7 @@
         .hero {
             height: 90vh;
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), 
-                        url('https://images.unsplash.com/photo-1504148455328-c376907d081c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+                        url('assets/images/shop_splash.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -87,24 +87,36 @@
         }
 
         .hero-logo {
-            width: 200px;
-            height: 200px;
+            width: 160px;
+            height: 160px;
             margin: 0 auto 2rem;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xKSIvPgo8dGV4dCB4PSIxMDAiIHk9IjEyMCIgZm9udC1mYW1pbHk9Ik9zd2FsZCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TUlEREFZPC90ZXh0Pgo8dGV4dCB4PSIxMDAiIHk9IjE1MCIgZm9udC1mYW1pbHk9Ik9zd2FsZCIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QlVJTERFUjwvdGV4dD4KPGREZWY+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8wXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjIwMCIgeTI9IjIwMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRjREMDNGIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0U2N0UyMiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=');
+            background-image: url('assets/images/logo.jpg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.9;
+            opacity: 0.8;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(212, 70, 27, 0.4);
+            border-radius: 12px;
             filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
-            transition: opacity 0.3s ease;
+            position: relative;
         }
 
-        .hero-content:hover .hero-logo {
-            opacity: 1;
+        /* Add orange tint as an overlay */
+        .hero-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(212, 70, 27, 0.15);
+            border-radius: 12px;
+            pointer-events: none;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: rgba(255,255,255,0.9);
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
@@ -505,7 +517,7 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">Midday Builder</a>
+            <a href="#home" class="logo">MIDDAY BUILDER</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -519,7 +531,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-logo"></div>
-            <p>Custom woodworking and furniture design in Wisconsin. Each piece built by hand with attention to detail and quality craftsmanship.</p>
+            <p>Avoiding <i>real</i> work at all costs.</p>
             <a href="#work" class="cta-button">See My Work</a>
         </div>
     </section>
